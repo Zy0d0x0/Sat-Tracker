@@ -3,6 +3,15 @@
 Python based satelite tracker.
 
 
+# Installation
+
+```
+
+pip install -e requirements.txt
+
+```
+
+
 # Satelites Current Supported.
 
 Weather:
