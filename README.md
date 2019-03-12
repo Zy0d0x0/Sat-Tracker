@@ -12,7 +12,7 @@ pip install -e requirements.txt
 ```
 
 
-# Satelites Current Supported.
+# Satelites Currently Supported.
 
 Weather:
 
@@ -40,13 +40,11 @@ BPSK:
 * FUNCUBE-1 (AO-73)
 * NAYIF-1 (EO-88).
 
-
 CUSTOM:
 
 * Custom satelite name will allow tracking if found in the Norad list supplied online.
 
 * Custom TLE (Two Line Element) will allows a conjunction of custom satelite name and file supplied.
-
 
 # Com Port
 
