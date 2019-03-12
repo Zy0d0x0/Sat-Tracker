@@ -42,7 +42,7 @@ BPSK:
 
 CUSTOM:
 
-* Custom satelite name will allow tracking if found in the Norad list supplied online.
+* Custom satellite name will allow tracking if found in the Norad list supplied online.
 
 * Custom TLE (Two Line Element) will allows a conjunction of custom satellite name and file supplied.
 
@@ -57,5 +57,5 @@ The RS232 serial com port currently will only interface with Celetron telescope 
 
 * Add auto update if time has gone over 24 hour running period.
 
-* Add a cutom argument to allowing a satelite list, currently only supports 1 custom satellite at a time.
+* Add a cutom argument to allowing a satellite list, currently only supports 1 custom satellite at a time.
 
