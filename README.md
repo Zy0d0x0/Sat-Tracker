@@ -48,7 +48,7 @@ CUSTOM:
 
 # Com Port
 
-The comport currently only will interface with Celetron telescope mounts. 
+The RS232 serial com port currently will only interface with Celetron telescope mounts. 
 
 
 # Current Known Bugs Todo.
