@@ -42,7 +42,7 @@ BPSK:
 
 CUSTOM:
 
-* Custom satellite name will allow tracking if found in the [Norad](https://www.celestrak.com/NORAD/elements/) list supplied online.
+* Custom satellite name will allow tracking if found in the [NORAD](https://www.celestrak.com/NORAD/elements/) lists.
 
 
 * Custom TLE (Two Line Element) will allows a conjunction of custom satellite name and file supplied.
