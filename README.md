@@ -57,5 +57,5 @@ The RS232 serial com port currently will only interface with Celetron telescope 
 
 * Add auto update if time has gone over 24 hour running period.
 
-* Add custom list of sats to track.
+* Add a cutom argument to allowing a satelite list, currently only supports 1 custom satelite at a time.
 
