@@ -1,6 +1,6 @@
 # Sat-Tracker
 
-Python based satelite tracker.
+Python based satellite tracker.
 
 
 # Installation
@@ -12,7 +12,7 @@ pip install -e requirements.txt
 ```
 
 
-# Satelites Currently Supported.
+# Satellites Currently Supported.
 
 Weather:
 
@@ -44,7 +44,7 @@ CUSTOM:
 
 * Custom satelite name will allow tracking if found in the Norad list supplied online.
 
-* Custom TLE (Two Line Element) will allows a conjunction of custom satelite name and file supplied.
+* Custom TLE (Two Line Element) will allows a conjunction of custom satellite name and file supplied.
 
 # Com Port
 
@@ -57,5 +57,5 @@ The RS232 serial com port currently will only interface with Celetron telescope 
 
 * Add auto update if time has gone over 24 hour running period.
 
-* Add a cutom argument to allowing a satelite list, currently only supports 1 custom satelite at a time.
+* Add a cutom argument to allowing a satelite list, currently only supports 1 custom satellite at a time.
 
