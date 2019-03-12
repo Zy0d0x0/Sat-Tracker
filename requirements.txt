@@ -1,0 +1,5 @@
+pyserial
+pyorbital
+pytz
+playsound
+geopy
