@@ -188,21 +188,12 @@ class SatTracker():
 
    def mountMovePostion(self, compass_angle, elevation, controller):
 
-      amount = 0.0
-
       gotoInProgress = controller.getGotoInProgress()  
+ 
 
-      controllerAzimuth, controllerElevation = controller.getPosition()
-
-      if not controllerElevation <= amount:   
-
-         if not gotoInProgress and int(elevation) >= 0:
-            print("Moving Mount To {} Postion".format(self.satName))
-            controller.gotoPosition(compass_angle, elevation)
-
-      elif controllerElevation <= amount and gotoInProgress:
-         print("Things Are Going Wrong")
-         sys.exit(0)
+      if not gotoInProgress and int(elevation) >= 0:
+         print("Moving Mount To {} Postion".format(self.satName))
+         controller.gotoPosition(compass_angle, elevation)
 
    #
    # Get The Current Postion Of The Mount
@@ -331,9 +322,11 @@ class SatTracker():
          controller = self.connectMount()
 
 
+      orb = self.tleCheck()
+
       while 1:
 
-         orb = self.tleCheck()
+   
          currGMT, currUTC = self.findCurrentTime()
          startPass = startPass.split(".")[0]
          MaxEle = MaxEle.split(".")[0]
@@ -369,6 +362,8 @@ class SatTracker():
 
 
          if currUTC >= endPass:
+            if self.port is not None:
+               self.mountGoHome(controller)
             break
 
          #

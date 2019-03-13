@@ -85,7 +85,6 @@ else:
    satList = ["ISS (ZARYA)"]
 
 
-
 #
 # If network & TCP Host Port
 #
@@ -110,7 +109,6 @@ tracker = satTracker.SatTracker()
 #
 
 if args.latitude and args.longitude:
-
    tracker.lat = args.latitude
    tracker.lon = args.longitude
 
@@ -134,6 +132,7 @@ if args.serial_port:
 
    if args.minMount:
       tracker.minMountElevation = int(args.minMount)
+      print(tracker.minMountElevation)
 
 
 #
@@ -158,7 +157,6 @@ if args.s:
 #
 
 if args.custom_tle:
-
    tracker.tle_file = args.custom_tle
 
 #
