@@ -28,7 +28,7 @@ parser.add_argument("-bpsk", action="store_true", help="BPSK: JY1SAT (JO-97), FU
 parser.add_argument("-fm", action="store_true", help="FM Voice: RADFXSAT (FOX-1B), FOX-1CLIFF (AO-95), FOX-1D (AO-92), SAUDISAT 1C (SO-50).")
 
 # Custom Satelite
-parser.add_argument("-custom", dest="custom", help="Custom Satelite To Track")
+parser.add_argument("-custom", dest="custom", default=[], nargs='+', help="Custom Satelite To Track")
 
 # Define A custom List Of TLE's, This Can Also Be Used With Custom Name For Tracking Sats That Are Not Avalible
 # Via The Online Method That Defaults With pyorbital 
@@ -78,7 +78,7 @@ elif args.bpsk:
 
 elif args.custom:
 
-   satList = [args.custom]
+   satList = args.custom
 
 else:
 
