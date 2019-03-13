@@ -188,7 +188,7 @@ class SatTracker():
 
    def mountMovePostion(self, compass_angle, elevation, controller):
 
-      amount = 358.00000000000000
+      amount = 0.0
 
       gotoInProgress = controller.getGotoInProgress()  
 
