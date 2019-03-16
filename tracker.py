@@ -164,6 +164,7 @@ if args.custom_tle:
 #
 
 aos = tracker.FindPass(satList)
+aosLen = len(aos)
 
 #
 # Track The Sats
@@ -177,10 +178,14 @@ try:
          tracker.satName = sat["satName"]
          tracker.tracker(client, sat["startPass"], sat["maxEle"], sat["endPass"])
 
-      if len(aos) == 0:
+      if aosLen == 0:
          print("Updating TLE Files")
          aos = tracker.FindPass(satList)
 
+         if aosLen == 0:
+            print("No Passes Found")
+            break
+            
 except KeyboardInterrupt:
    pass
 
