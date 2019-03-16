@@ -171,9 +171,15 @@ aos = tracker.FindPass(satList)
 
 try:
 
-   for sat in sorted(aos, key=lambda k: k["startPass"]):
-      tracker.satName = sat["satName"]
-      tracker.tracker(client, sat["startPass"], sat["maxEle"], sat["endPass"])
+   while 1:
+
+      for sat in sorted(aos, key=lambda k: k["startPass"]):
+         tracker.satName = sat["satName"]
+         tracker.tracker(client, sat["startPass"], sat["maxEle"], sat["endPass"])
+
+      if len(aos) == 0:
+         print("Updating TLE Files")
+         aos = tracker.FindPass(satList)
 
 except KeyboardInterrupt:
    pass
