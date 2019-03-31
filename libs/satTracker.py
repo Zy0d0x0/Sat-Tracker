@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 from pyorbital.orbital import Orbital
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from time import strftime, gmtime, localtime
 import geopy.distance
 from libs import nexstar as ns
@@ -64,20 +64,37 @@ class SatTracker():
    tle_file = None
 
    #
+   # Adjust Clock UTC/BST Daylight Savings
+   #
+
+   delta =  datetime.now().hour  - datetime.utcnow().hour 
+   offset = timedelta(hours=delta)
+
+
+   #
    # This Will Return The Predicted Pass Time For 24 Hours
    #
 
    def NextPasses(self, orb):
       aos = []
 
-      print("Searching Passes For {}".format(self.satName))
+      print("Searching Passes For {} (UTC +{})".format(self.satName, self.offset))
 
       NexPasses = orb.get_next_passes(datetime.utcnow(), 
       24, self.lon, self.lat, self.alt, horizon=self.minElevation)
 
       for Pass in NexPasses:
          RiseTime, FallTime, MaxEle = Pass
-         aos.append({"satName": self.satName, "startPass" : str(RiseTime), "maxEle" : str(MaxEle) ,"endPass" : str(FallTime)})
+
+         aos.append(
+         {
+
+         "satName": self.satName, 
+         "startPass" : str(RiseTime + self.offset), 
+         "maxEle" : str(MaxEle + self.offset),
+         "endPass" : str(FallTime + self.offset)
+
+         })
 
       return aos
 
@@ -128,10 +145,9 @@ class SatTracker():
 
    def findCurrentTime(self):
  
-      gmt = strftime('%Y-%m-%d %H:%M:%S', gmtime())
-      utc = strftime('%Y-%m-%d %H:%M:%S', localtime())
+      local = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-      return gmt, utc
+      return local
 
 
    #
@@ -280,14 +296,13 @@ class SatTracker():
    # Print Results
    #
 
-   def showResults(self, orb, currUTC, currGMT, startPass, MaxEle, endPass):
+   def showResults(self, orb, currLocal, startPass, MaxEle, endPass):
 
       os.system("cls || clear")
               
       print("Tracking: {}\n".format(self.satName))
 
-      print("UTC Time: {}".format(currUTC))
-      print("GMT Time: {}\n".format(currGMT))
+      print("Time: {} (UTC +{})\n".format(currLocal, self.offset))
 
       print("AOS: {}".format(startPass))
       print("Max: {}".format(MaxEle))
@@ -327,11 +342,11 @@ class SatTracker():
       while 1:
 
    
-         currGMT, currUTC = self.findCurrentTime()
+         currLocal = self.findCurrentTime()
          startPass = startPass.split(".")[0]
          MaxEle = MaxEle.split(".")[0]
          endPass = endPass.split(".")[0]
-         lat, lon, alt, ele, azi = self.showResults(orb, currUTC, currGMT, startPass, MaxEle, endPass)
+         lat, lon, alt, ele, azi = self.showResults(orb, currLocal, startPass, MaxEle, endPass)
 
          #
          # Display & Move Telescope Mount To Postion
@@ -356,12 +371,12 @@ class SatTracker():
          # Play AOS Alert Tone 
          #
 
-         if currUTC in startPass:
+         if currLocal in startPass:
             if self.sound:
                playsound('alert.wav')
 
 
-         if currUTC >= endPass:
+         if currLocal >= endPass:
             if self.port is not None:
                self.mountGoHome(controller)
             break
