@@ -131,8 +131,12 @@ if args.serial_port:
    tracker.port = args.serial_port
 
    if args.minMount:
+      if int(args.minMount) <= 9:
+         print("WARNING This could cause the mount to go below 0 degree's elevation")
+         time.sleep(5)
+
       tracker.minMountElevation = int(args.minMount)
-      print(tracker.minMountElevation)
+
 
 
 #
