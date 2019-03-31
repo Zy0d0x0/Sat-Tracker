@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 from libs import satTracker
-import argparse
+import argparse, time
 
 
 #
@@ -170,22 +170,29 @@ aosLen = len(aos)
 # Track The Sats
 #
 
+
 try:
 
    while 1:
 
       for sat in sorted(aos, key=lambda k: k["startPass"]):
          tracker.satName = sat["satName"]
+
+         print(sat)
          tracker.tracker(client, sat["startPass"], sat["maxEle"], sat["endPass"])
+   
 
       if aosLen == 0:
          print("Updating TLE Files")
          aos = tracker.FindPass(satList)
+         time.sleep(15)
 
          if aosLen == 0:
             print("No Passes Found")
+            time.sleep(15)
             break
             
+
 except KeyboardInterrupt:
    pass
 

@@ -67,9 +67,9 @@ class SatTracker():
    # Adjust Clock UTC/BST Daylight Savings
    #
 
-   delta =  datetime.now().hour  - datetime.utcnow().hour 
-   offset = timedelta(hours=delta)
-
+   delta =  datetime.now() - datetime.utcnow()
+   delta = str(delta).strip(":")[0]
+   offset = timedelta(hours=int(delta))
 
    #
    # This Will Return The Predicted Pass Time For 24 Hours
@@ -336,7 +336,6 @@ class SatTracker():
       if self.port is not None:
          controller = self.connectMount()
 
-
       orb = self.tleCheck()
 
       while 1:
@@ -380,9 +379,11 @@ class SatTracker():
             if self.port is not None:
                self.mountGoHome(controller)
             break
+   
 
          #
          # Sleep For A Second As So Stats Can Be Seen
          #
-
          time.sleep(1)
+
+   
