@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 from pyorbital.orbital import Orbital
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from time import strftime, gmtime, localtime
 import geopy.distance
 from libs import nexstar as ns
