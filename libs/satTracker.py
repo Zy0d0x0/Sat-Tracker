@@ -247,7 +247,9 @@ class SatTracker():
 
             print("Connecting To Mount")
             controller = ns.NexstarHandController(self.port)
-            self.mountGoHome(controller)
+
+            #Get A Bigger Cable Until Worked Out, Yeah Big No No
+            #self.mountGoHome(controller)
 
          except:
  
@@ -376,8 +378,6 @@ class SatTracker():
 
 
          if currLocal >= endPass:
-            if self.port is not None:
-               self.mountGoHome(controller)
             break
    
 

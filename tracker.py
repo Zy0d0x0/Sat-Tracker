@@ -60,6 +60,10 @@ args = parser.parse_args()
 # Satelites To Track
 #
 
+#if args.check:
+
+   #self.mountGoHome(controller)
+
 if args.weather:
 
    satList = ["METEOR-M 2", "NOAA 19", "NOAA 18", "NOAA 15"]
