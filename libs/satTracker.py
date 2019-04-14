@@ -358,6 +358,8 @@ class SatTracker():
             print("Mount Azimuth: {:.2f}".format(controllerAzimuth))
             print("Mount Elevation: {:.2f}{}\n".format(controllerElevation, u"\u00b0"))
 
+         
+
             if int(ele) >= self.minMountElevation:
                self.mountMovePostion(azi, ele, controller)
 

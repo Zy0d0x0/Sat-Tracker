@@ -35,7 +35,7 @@ parser.add_argument("-custom", dest="custom", default=[], nargs='+', help="Custo
 parser.add_argument("-custom-tle", dest="custom_tle", help="Custom TLE File For Offline Tracking")
 
 # Sets the default elevation for the satelite prediction
-parser.add_argument("-elevation", dest="elevation", default=15, help="Minimum Satalite Elevation For Prediction.")
+parser.add_argument("-elevation", dest="elevation", default=10, help="Minimum Satalite Elevation For Prediction.")
 
 # Enable TCP Networking Client Defaults To Localhost Port 9999
 parser.add_argument("-network", action="store_true", help="Enable TCP Network Stream Sat Name, Latitude, Longitude and Altitude over TCP Network.")
@@ -136,7 +136,7 @@ if args.serial_port:
 
    if args.minMount:
       if int(args.minMount) <= 9:
-         print("WARNING This could cause the mount to go below 0 degree's elevation")
+         print("WARNING: This could cause the mount to go below 0 degree's elevation")
          time.sleep(5)
 
       tracker.minMountElevation = int(args.minMount)
