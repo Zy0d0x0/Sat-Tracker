@@ -7,7 +7,8 @@ Python based satellite tracker.
 
 ```
 
-pip install -e requirements.txt
+apt-get install python3-geopy python3-pyorbital
+python3 -m pip install playsound
 
 ```
 
